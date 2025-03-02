@@ -1,6 +1,11 @@
 #ifndef UTILS_H
 #define UTILS_H
+#include <stddef.h>
 
+typedef struct {
+    int status;
+    char message [50];
+} Error;
 // struct Player
 // {
 //     char name[50];
@@ -41,6 +46,7 @@
 // }
 
 void removeNewLine(char *str);
+Error safe_strncpy(char *dest, const char *src, size_t max_len);
 
 // /// @brief handleNumberInput would take in the number value in the string format and then assign it to destination
 // /// @param args An array of arguments:

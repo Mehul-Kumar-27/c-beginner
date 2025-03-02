@@ -4,4 +4,4 @@ project(BettingGame C)
 set(CMAKE_C_STANDARD 11)
 
 # Add player and game source files
-add_executable(gamble main.c player/player.c utils/utils.c)
+add_executable(gamble main.c player/player.c utils/utils.c game/game.c)
