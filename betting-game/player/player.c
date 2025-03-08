@@ -11,7 +11,7 @@
 void initializePlayer(Player *p, const char *name) {
     // Copy the name to the player's name field
     removeNewLine(name);
-    strncpy(p->name, name, 49);
+    safe_strncpy(p->name, name, 49);
 
     // Initialize balance to a default value (e.g., 0)
     p->balance = 1000;

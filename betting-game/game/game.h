@@ -6,10 +6,29 @@
 #include "../utils/utils.h"
 #include <stddef.h>
 
-typedef struct {
-    int players;       /**< Number of players in the game */
+enum GameEventStatus
+{
+    EVENT_SUCCESS = 0,
+    FAILED_TO_GET_INPUT = 1,
+    INVALID_USER_INPUT = 2,
+    USER_FAILED_TO_PROVIDE_INPUT = 3
+};
+
+typedef struct
+{
+    char gameId[37];     // UUID as a string (36 characters + null terminator)
+    int players;         /**< Number of players in the game */
     Player *playerArray; /**< Dynamic array of players */
+    int bots;            /**<Number of bots added to the game */
+    int magic_number     /* <Random Number that is generated for each round>*/
 } Game;
+
+typedef struct
+{
+    char message[50];
+    int data;
+    enum GameEventStatus status;
+} Message;
 
 /**
  * Initializes a Game instance with the given players.
@@ -20,6 +39,7 @@ typedef struct {
  * @param numPlayers Number of players in the game.
  */
 Error initGame(Game *game, Player *playerList, int numOfPlayers);
+Error startGame(Game *game);
 
 /**
  * Frees the memory allocated for the Game instance.

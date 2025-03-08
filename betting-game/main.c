@@ -17,8 +17,11 @@ int main(int argc, char const *argv[])
     Player playerList[1] = {player};
     Game game;
     Error err = initGame(&game, playerList, 1);
-    if(err.status == 0){
-        printf("Successfully initialized the game with %zu players!", sizeof(playerList) / sizeof(playerList[0]));
+    if (err.status == 0)
+    {
+        printf("Successfully initialized the game %s with %zu players! \n", game.gameId, sizeof(playerList) / sizeof(playerList[0]));
     }
+    Error error = startGame(&game);
+    freeGame(&game);
     return 0;
 }
